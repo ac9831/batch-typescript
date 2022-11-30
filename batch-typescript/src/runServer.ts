@@ -5,7 +5,7 @@ import {insertCsvToMongo} from './insert-csv-to-mongo'
 import {getFileNameAndNumber} from "./utils";
 
 export const runServer = (mongodb) => {
-  const app = express(), port = 4000
+  const app = express()
 
   app
     .use(bodyParser.urlencoded({extended: true}))
@@ -27,5 +27,5 @@ export const runServer = (mongodb) => {
       await insertCsvToMongo(filename, 'users', {birthday: -1, name: 1})
       res.json("완료")
     })
-    .listen(port, () => console.log(`http://localhost:${port} started...`))
+    .listen(80,() => console.log(`server started...`))
 }
