@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src",
+    "start": "forever start -v -c ts-node src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -29,6 +29,7 @@
     "cors": "^2.8.5",
     "create-react-app": "^5.0.1",
     "express": "^4.18.2",
+    "forever": "^4.0.3",
     "mkdirp": "^1.0.4",
     "mongodb": "^4.11.0",
     "mongoose": "^6.7.0",
