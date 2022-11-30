@@ -25,7 +25,7 @@ export const runServer = (mongodb) => {
     .get('/insert/csv/mongodb', async (req, res) =>{
       const [filename] = getFileNameAndNumber('./data/fake-100000.csv', 1)
       await insertCsvToMongo(filename, 'users', {birthday: -1, name: 1})
-      res.json("complte")
+      res.json("완료")
     })
     .listen(port, () => console.log(`http://localhost:${port} started...`))
 }
