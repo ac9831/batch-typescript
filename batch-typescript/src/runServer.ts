@@ -20,5 +20,8 @@ export const runServer = (mongodb) => {
       const result = await cursor.toArray()
       res.json(result)
     })
+    .get('/make/fakedata', async (req, res) => {
+
+    })
     .listen(port, () => console.log(`http://localhost:${port} started...`))
 }
