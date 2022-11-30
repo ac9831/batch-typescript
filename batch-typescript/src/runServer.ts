@@ -1,6 +1,8 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
+import {insertCsvToMongo} from './insert-csv-to-mongo'
+import {getFileNameAndNumber} from "./utils";
 
 export const runServer = (mongodb) => {
   const app = express(), port = 4000
@@ -19,6 +21,11 @@ export const runServer = (mongodb) => {
         .limit(parseInt(limit))
       const result = await cursor.toArray()
       res.json(result)
+    })
+    .get('/insert/csv/mongodb', async (req, res) =>{
+      const [filename] = getFileNameAndNumber('./data/fake-100000.csv', 1)
+      await insertCsvToMongo(filename, 'users', {birthday: -1, name: 1})
+      res.json("complte")
     })
     .listen(port, () => console.log(`http://localhost:${port} started...`))
 }

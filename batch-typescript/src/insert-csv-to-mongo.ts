@@ -1,8 +1,7 @@
 import {connect} from './mongodb/connect'
-import {getFileNameAndNumber} from './utils'
 import {csvFileReaderGenerator} from './csv/csvFileReaderGenerator'
 
-const insertCsvToMongo = async(csvFilename, collectionName, index) => {
+export const insertCsvToMongo = async (csvFilename, collectionName, index) => {
   let connection
   try {
     connection = await connect()
@@ -11,7 +10,7 @@ const insertCsvToMongo = async(csvFilename, collectionName, index) => {
     await collection.deleteMany({})
     await collection.createIndex(index)
     let line = 1
-    for(let object of csvFileReaderGenerator(filename)) {
+    for(let object of csvFileReaderGenerator(csvFilename)) {
       await collection.insertOne(object)
       console.log(`${line++} inserted.`)
     }
@@ -22,6 +21,3 @@ const insertCsvToMongo = async(csvFilename, collectionName, index) => {
     connection.colse
   }
 }
-
-const [filename] = getFileNameAndNumber('./data/fake-100000.csv', 1)
-insertCsvToMongo(filename, 'users', {birthday: -1, name: 1})
