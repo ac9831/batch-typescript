@@ -5,7 +5,7 @@ type GetDataPromiseCallback = (a: IUser[]) => void
 type GetUnsplashPromiseCallback = (a: string[]) => void
 const api = process.env.REACT_APP_UNSPLASH_API
 export const getDataPromise = (fn: GetDataPromiseCallback) => (skip:number, limit: number) => {
-  fetch(`https://172.105.196.169:4000/${skip}/${limit}`)
+  fetch(`https://127.0.0.1:4000/${skip}/${limit}`)
     .then(res => res.json())
     .then(fn)
 }
