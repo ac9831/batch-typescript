@@ -27,5 +27,5 @@ export const runServer = (mongodb) => {
       await insertCsvToMongo(filename, 'users', {birthday: -1, name: 1})
       res.json("완료")
     })
-    .listen(() => console.log(`server started...`))
+    .listen(80, () => console.log(`server started...`))
 }
